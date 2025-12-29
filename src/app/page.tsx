@@ -5,10 +5,12 @@ import About from '@/pages/About';
 import Cases from '@/pages/Cases';
 import Contact from '@/pages/Contact';
 import Header from '@/components/Header';
+import MobileHeader from '@/components/MobileHeader';
 import React, { useEffect, useRef, useState } from 'react';
 
 export default function App() {
   const [isVisibleHeader, setIsVisibleHeader] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const homeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -17,12 +19,13 @@ export default function App() {
     const options = {
       root: null,
       rootMargin: '0px',
-      threshold: 1,
+      threshold: 0.9,
     };
 
     const observer = new IntersectionObserver((entries) => {
       const [entry] = entries;
-      setIsVisibleHeader(!entry.isIntersecting);
+      const isHomeVisible = entry.intersectionRatio >= 0.9;
+      setIsVisibleHeader(!isHomeVisible);
     }, options);
 
     observer.observe(homeRef.current);
@@ -32,9 +35,24 @@ export default function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 767px)');
+
+    const handleChange = () => {
+      setIsMobile(mediaQuery.matches);
+    };
+
+    handleChange();
+    mediaQuery.addEventListener('change', handleChange);
+
+    return () => {
+      mediaQuery.removeEventListener('change', handleChange);
+    };
+  }, []);
+
   return (
     <main>
-      {isVisibleHeader && <Header />}
+      {isVisibleHeader && (isMobile ? <MobileHeader /> : <Header />)}
 
       <div ref={homeRef}>
         <Home />
