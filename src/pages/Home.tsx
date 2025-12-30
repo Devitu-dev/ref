@@ -11,7 +11,7 @@ export default function Home() {
       {!videoFailed ? (
         <video
           className="absolute top-0 left-0 z-0 h-screen w-full object-cover"
-          src="/videos/bg-video.mp4"
+          src="https://dkxfktqbqkhkmn2f.public.blob.vercel-storage.com/video/home-bg.mp4"
           autoPlay
           loop
           muted
