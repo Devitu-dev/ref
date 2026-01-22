@@ -4,7 +4,7 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Ref Future',
-  description: 'A homepage for Ref',
+  description: 'Um site instintucional de Ref Future',
 };
 
 const inter = Inter({
