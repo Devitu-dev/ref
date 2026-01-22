@@ -8,7 +8,7 @@ import refLogo from '../../assets/ref-future-footer-logo.svg';
 
 export default function Contact() {
   return (
-    <div className="flex h-screen flex-col items-center justify-between p-4">
+    <div id="contact" className="flex h-screen flex-col items-center justify-between p-4">
       <div className="w-full space-y-8">
         <h2 className="text-outline mt-16 ml-4 text-4xl font-bold text-white md:ml-16 md:text-7xl">Contato</h2>
         <form className="flex max-w-lg flex-col gap-4 md:ml-16">
