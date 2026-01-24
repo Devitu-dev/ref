@@ -25,22 +25,19 @@ function Player({ thumb, title, video }: PlayerProps) {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         />
       ) : (
-        <div className="group h-full w-full bg-cover bg-center" style={{ backgroundImage: `url(${thumb})` }}>
-          <div className="absolute inset-0 flex items-center justify-center transition">
-            <button
-              type="button"
-              onClick={() => setIsPlaying(true)}
-              className="z-10 hidden h-16 w-16 items-center justify-center rounded-full bg-black text-white transition group-hover:flex"
-              aria-label="Play">
-              <Play />
-            </button>
+        <button
+          onClick={() => setIsPlaying(true)}
+          className="group h-full w-full cursor-pointer bg-cover bg-center"
+          style={{ backgroundImage: `url(${thumb})` }}>
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-4">
+            <h2 className="z-0 text-center text-2xl font-bold text-white transition md:text-4xl">{title}</h2>
+            <div className="flex items-center gap-2 text-white/60">
+              <p>Click para iniciar o vídeo</p>
+              <Play size={16} />
+            </div>
           </div>
-          <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition group-hover:bg-black/60">
-            <h2 className="z-0 px-4 text-center text-2xl font-bold text-white transition group-hover:opacity-0 md:text-4xl">
-              {title}
-            </h2>
-          </div>
-        </div>
+        </button>
       )}
     </div>
   );
