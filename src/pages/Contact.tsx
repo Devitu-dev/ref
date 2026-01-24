@@ -2,19 +2,40 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import VITUSVG from '../../assets/VITU.svg';
 import refLogo from '../../assets/ref-future-footer-logo.svg';
 
 export default function Contact() {
+  const [email, setEmail] = useState('');
+  const [projectDescription, setProjectDescription] = useState('');
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? '';
+  const whatsappUrl = useMemo(() => {
+    if (!whatsappNumber) return '';
+    const message = `Email: ${email}\nProjeto: ${projectDescription}`;
+    return `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  }, [email, projectDescription, whatsappNumber]);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!whatsappUrl) return;
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div id="contact" className="flex h-screen flex-col items-center justify-between p-4">
       <div className="w-full space-y-8">
         <h2 className="text-outline mt-16 ml-4 text-4xl font-bold text-white md:ml-16 md:text-7xl">Contato</h2>
-        <form className="flex max-w-lg flex-col gap-4 md:ml-16">
-          <Input placeholder="Email" />
-          <Textarea placeholder="Descreva seu projeto" />
-          <Button variant="secondary">Enviar</Button>
+        <form className="flex max-w-lg flex-col gap-4 md:ml-16" onSubmit={handleSubmit}>
+          <Input placeholder="Email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+          <Textarea
+            placeholder="Descreva seu projeto"
+            value={projectDescription}
+            onChange={(event) => setProjectDescription(event.target.value)}
+          />
+          <Button variant="secondary" type="submit">
+            Enviar
+          </Button>
         </form>
       </div>
 
