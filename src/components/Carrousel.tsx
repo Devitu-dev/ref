@@ -3,13 +3,15 @@
 import { useRef, useEffect } from 'react';
 import CaseCard from '@/components/CaseCard';
 
-type TEvent = {
+type TCase = {
+  id: string;
   title: string;
   year: number;
-  imageUrl: string;
+  coverUrl: string;
+  videoCase: string;
 };
 
-export default function Carrousel({ events, reverse }: { events: TEvent[]; reverse: boolean }) {
+export default function Carrousel({ events, reverse }: { events: TCase[]; reverse: boolean }) {
   const doubledEvents = [...events, ...events];
   const listRef = useRef<HTMLUListElement>(null);
 
