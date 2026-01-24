@@ -5,14 +5,24 @@ import refLogo from '../../assets/ref-future.png';
 
 export default function About() {
   return (
-    <div id="about" className="relative flex h-screen overflow-hidden md:items-center">
+    <div id="about" className="relative flex min-h-screen overflow-hidden md:items-center">
       <Image
-        className="absolute hidden h-screen w-full scale-[110%] object-cover object-[180%_80%] md:block"
+        className="absolute inset-0 hidden object-cover object-center md:block"
         src={aboutDesktop}
         alt="hero image"
+        fill
+        sizes="100vw"
+        priority
       />
-      <Image className="absolute h-screen w-full object-cover md:hidden" src={aboutMobile} alt="hero image" />
-      <div className="absolute z-10 h-screen w-full bg-linear-180 from-black from-20% via-black/50 to-transparent to-60% md:bg-linear-120" />
+      <Image
+        className="absolute inset-0 object-cover object-center md:hidden"
+        src={aboutMobile}
+        alt="hero image"
+        fill
+        sizes="100vw"
+        priority
+      />
+      <div className="absolute inset-0 z-10 bg-linear-180 from-black from-20% via-black/50 to-transparent to-60% md:bg-linear-120" />
       <div className="z-20 space-y-8 p-4 md:basis-3/5 md:p-16">
         <div className="flex items-center">
           <Image src={refLogo} alt="ref-logo" className="w-64 md:w-96" />
