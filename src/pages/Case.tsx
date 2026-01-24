@@ -134,8 +134,9 @@ export default function Case() {
         <div
           role="button"
           tabIndex={0}
-          className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${viewerOpen ? 'opacity-100' : 'opacity-0'
-            }`}
+          className={`fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${
+            viewerOpen ? 'opacity-100' : 'opacity-0'
+          }`}
           onClick={closeViewer}
           onKeyDown={(event) => {
             if (event.key === 'Escape') closeViewer();
@@ -143,8 +144,9 @@ export default function Case() {
           aria-label="Fechar galeria">
           <button
             type="button"
-            className={`relative mx-4 h-[80vh] w-[90vw] transition-transform duration-300 ${viewerOpen ? 'scale-100' : 'scale-95'
-              }`}
+            className={`relative mx-4 h-[80vh] w-[90vw] transition-transform duration-300 ${
+              viewerOpen ? 'scale-100' : 'scale-95'
+            }`}
             onClick={(event) => event.stopPropagation()}
             onKeyDown={(event) => event.stopPropagation()}
             aria-label="Visualizador de imagem">
